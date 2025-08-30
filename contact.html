@@ -235,7 +235,8 @@
                         shortly.
                     </p>
 
-                    <form action="https://formsubmit.co/kanwarpreetsidana1200@gmail.com" method="POST" novalidate>
+                    <form id="contactForm" action="https://formsubmit.co/kanwarpreetsidana1200@gmail.com" method="POST"
+                        novalidate>
                         <!-- Disable Captcha -->
                         <input type="hidden" name="_captcha" value="false">
                         <!-- Redirect to Thank You Page after submission (optional) -->
@@ -250,6 +251,7 @@
                                         placeholder="Your Name" required minlength="2">
                                     <label for="name">Your Name</label>
                                 </div>
+                                <div class="text-danger small" id="error-name"></div>
                             </div>
 
                             <!-- Email -->
@@ -259,6 +261,7 @@
                                         placeholder="Your Email" required>
                                     <label for="email">Your Email</label>
                                 </div>
+                                <div class="text-danger small" id="error-email"></div>
                             </div>
 
                             <!-- Phone -->
@@ -269,6 +272,7 @@
                                         required>
                                     <label for="phone">Your Phone</label>
                                 </div>
+                                <div class="text-danger small" id="error-phone"></div>
                             </div>
 
                             <!-- Project -->
@@ -278,6 +282,7 @@
                                         placeholder="Project" required minlength="2">
                                     <label for="project">Your Project</label>
                                 </div>
+                                <div class="text-danger small" id="error-project"></div>
                             </div>
 
                             <!-- Subject -->
@@ -287,6 +292,7 @@
                                         placeholder="Subject" required minlength="3">
                                     <label for="subject">Subject</label>
                                 </div>
+                                <div class="text-danger small" id="error-subject"></div>
                             </div>
 
                             <!-- Message -->
@@ -297,6 +303,7 @@
                                         minlength="5"></textarea>
                                     <label for="message">Message</label>
                                 </div>
+                                <div class="text-danger small" id="error-message"></div>
                             </div>
 
                             <!-- Submit -->
@@ -306,7 +313,6 @@
                         </div>
                     </form>
                 </div>
-
             </div>
             <div class="office pt-5">
                 <div class="section-title text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">
@@ -470,6 +476,67 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            let isValid = true;
+
+            // Clear previous errors
+            document.querySelectorAll('.text-danger').forEach(el => el.innerText = '');
+
+            // Get values
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const project = document.getElementById('project').value.trim();
+            const subject = document.getElementById('subject').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            // Validate name
+            if (name.length < 2) {
+                document.getElementById('error-name').innerText = 'Please enter at least 2 characters.';
+                isValid = false;
+            }
+
+            // Validate email
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                document.getElementById('error-email').innerText = 'Please enter a valid email address.';
+                isValid = false;
+            }
+
+            // Validate phone
+            const phonePattern = /^[0-9]{10}$/;
+            if (!phonePattern.test(phone)) {
+                document.getElementById('error-phone').innerText = 'Please enter a valid 10-digit phone number.';
+                isValid = false;
+            }
+
+            // Validate project
+            if (project.length < 2) {
+                document.getElementById('error-project').innerText = 'Please enter at least 2 characters.';
+                isValid = false;
+            }
+
+            // Validate subject
+            if (subject.length < 3) {
+                document.getElementById('error-subject').innerText = 'Subject must be at least 3 characters.';
+                isValid = false;
+            }
+
+            // Validate message
+            if (message.length < 5) {
+                document.getElementById('error-message').innerText = 'Message must be at least 5 characters.';
+                isValid = false;
+            }
+
+            // Stop submission if invalid
+            if (!isValid) {
+                e.preventDefault();
+            }
+        });
+    </script>
+
 </body>
 
 </html>
