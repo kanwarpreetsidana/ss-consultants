@@ -60,6 +60,7 @@
     height: 56px;
 }
 
+
 .btn-square,
 .btn-sm-square,
 .btn-md-square,
@@ -85,6 +86,8 @@
     color: var(--bs-secondary);
     border: 1px solid var(--bs-secondary);
 }
+
+
 
 .btn.btn-secondary {
     background: transparent;
@@ -706,7 +709,7 @@
 
 .country .country-item .country-name {
     position: absolute;
-    top: 50%;
+    top: 90%;
     left: 50%;
     transform: translate(-50%, -50%);
     transition: 0.5s;
@@ -885,11 +888,11 @@
 
 /*** Footer Start ***/
 .footer {
-    background: var(--bs-primary);
+    background: #F0F5FB !important;
 }
 .footer .footer-item a {
     line-height: 30px;
-    color: var(--bs-white);
+    /* color: var(--bs-white); */
     transition: 0.5s;
 }
 
